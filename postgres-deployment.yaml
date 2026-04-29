@@ -26,7 +26,8 @@ spec:
                 - "true"
       containers:
       - name: postgres
-        image: postgres:latest
+        imagePullPolicy: "IfNotPresent"
+        image: postgres:18
         ports:
           - containerPort: 5432
         env:
@@ -37,8 +38,7 @@ spec:
                key: POSTGRES_PASSWORD
         volumeMounts:
           - name: synology-iscsi-postgres
-            mountPath: /var/lib/postgresql/data
-            subPath: data
+            mountPath: /var/lib/postgresql
           - name: shm-volume
             mountPath: /dev/shm
       volumes:
